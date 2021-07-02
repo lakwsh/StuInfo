@@ -71,7 +71,8 @@ int main(){
                                 bool sex;
                                 date d;
                                 cin>>name>>sex>>d;
-                                if(stu.insert(name, (sex_t)sex, d, stu.getSchool(menu::school()))) cout<<"成功"<<endl;
+                                if(stu.insert(name, (sex_t)sex, d, stu.getSchool(menu::school()))) cout<<"录入成功"<<endl;
+                                else cout<<"录入失败!!! 请检查学号是否重复"<<endl;
                                 break;
                             }
                             case 2: stu.setNo(); stu.search(); break;
@@ -104,6 +105,7 @@ int main(){
                                         case 4: stu.edit(stu.getSchool(menu::school())); break;
                                         case 5: goto info_edit_out;
                                     }
+                                    cout<<endl;
                                 }
                             info_edit_out:
                                 break;
@@ -112,8 +114,7 @@ int main(){
                             case 6: cout<<"记录条数: "<<stu.count()<<endl; break;
                             case 7:
                             {
-                                stu.setNo();
-                                cout<<"请输入出生日期(如19871231): ";
+                                cout<<"请输入出生日期,将显示所有出生日期小于该值的学生: ";
                                 date d;
                                 cin>>d;
                                 stu.search(d);
@@ -123,7 +124,7 @@ int main(){
                         }
                         cout<<endl;
                     } catch(exception e){
-                        cout<<"异常："<<e.what()<<endl;
+                        cout<<"异常: "<<e.what()<<endl;
                     }
                 }
             info_out:
@@ -148,6 +149,7 @@ int main(){
                         }
                         case 4: goto achi_out;
                     }
+                    cout<<endl;
                 }
             achi_out:
                 break;

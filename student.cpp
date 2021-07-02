@@ -67,7 +67,7 @@ void student::search(date d){
 	MYSQL_ROW *rows;
 	unsigned int fields;
 	stringstream sql;
-	sql<<"SELECT * FROM `student` WHERE `No`="<<no<<" AND `Born`<"<<d;
+	sql<<"SELECT * FROM `student` WHERE `Born`<"<<d;
 	print(query(sql.str(), rows, fields), rows);
 }
 bool student::remove(){
