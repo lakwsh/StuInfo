@@ -42,6 +42,10 @@ bool student::edit(school *sch){
 	return query(sql.str());
 }
 void student::print(my_ulonglong count, MYSQL_ROW *&rows){
+	if(!rows){
+		cout<<"未查询到相关信息"<<endl;
+		return;
+	}
 	cout<<"学号\t\t姓名\t性别\t出生日期\t学校类别"<<endl;
 	for(unsigned int i = 0; i<count; i++) cout<<rows[i][1]<<"\t"<<rows[i][2]<<"\t"<<getSex((sex_t)atoi(rows[i][3]))<<"\t"<<rows[i][4]<<"\t"<<getSchool(atoi(rows[i][5]))->getName()<<endl;
 	cout<<"信息显示完毕"<<endl;
@@ -57,9 +61,7 @@ void student::search(){
 	unsigned int fields;
 	stringstream sql;
 	sql<<"SELECT * FROM `student` WHERE `No`="<<no;
-	my_ulonglong count = query(sql.str(), rows, fields);
-	if(count==1) print(count, rows);
-	else cout<<"查无记录"<<endl;
+	print(query(sql.str(), rows, fields), rows);
 }
 void student::search(date d){
 	MYSQL_ROW *rows;

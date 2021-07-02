@@ -42,6 +42,10 @@ bool UnivSch::insert(){
 	return query(sql.str());
 }
 void PrimSch::print(my_ulonglong count, MYSQL_ROW *&rows){
+	if(!rows){
+		cout<<"未查询到相关信息"<<endl;
+		return;
+	}
 	cout<<"编号\t语文\t数学\t英语"<<endl;
 	cout<<rows[0][0]<<"\t"<<rows[0][1]<<"\t"<<rows[0][2]<<"\t"<<rows[0][3]<<endl;
 	free(rows); // malloc
@@ -52,6 +56,10 @@ void PrimSch::list(){
 	print(query("SELECT `Id`,`Chi`,`Math`,`Eng` FROM `score`", rows, fields), rows);
 }
 void SencSch::print(my_ulonglong count, MYSQL_ROW *&rows){
+	if(!rows){
+		cout<<"未查询到相关信息"<<endl;
+		return;
+	}
 	cout<<"编号\t物理\t化学\t生物"<<endl;
 	cout<<rows[0][0]<<"\t"<<rows[0][1]<<"\t"<<rows[0][2]<<"\t"<<rows[0][3]<<endl;
 	free(rows); // malloc
@@ -63,6 +71,10 @@ void SencSch::list(){
 	print(query("SELECT `Id`,`Phy`,`Chem`,`Bio` FROM `score`", rows, fields), rows);
 }
 void UnivSch::print(my_ulonglong count, MYSQL_ROW *&rows){
+	if(!rows){
+		cout<<"未查询到相关信息"<<endl;
+		return;
+	}
 	cout<<"编号\t课号\t\t学分"<<endl;
 	cout<<rows[0][0]<<"\t"<<rows[0][1]<<"\t"<<rows[0][2]<<endl;
 	free(rows); // malloc

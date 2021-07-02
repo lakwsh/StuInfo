@@ -24,6 +24,7 @@ bool database::query(string sql){
     return !mysql_query(&db, sql.c_str());
 }
 my_ulonglong database::query(string sql, MYSQL_ROW *&res, unsigned int &fields){
+    res = NULL;
     if(query(sql)){
         MYSQL_RES *result = mysql_store_result(&db);
         if(result){

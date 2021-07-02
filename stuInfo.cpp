@@ -71,7 +71,7 @@ int main(){
                                 bool sex;
                                 date d;
                                 cin>>name>>sex>>d;
-                                stu.insert(name, (sex_t)sex, d, stu.getSchool(menu::school()));
+                                if(stu.insert(name, (sex_t)sex, d, stu.getSchool(menu::school()))) cout<<"成功"<<endl;
                                 break;
                             }
                             case 2: stu.setNo(); stu.search(); break;
