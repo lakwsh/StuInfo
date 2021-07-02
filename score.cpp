@@ -46,7 +46,7 @@ bool UnivSch::insert(){
 	float got;
 	cin>>lesson>>got;
 	stringstream sql;
-	sql<<"INSERT INTO `score` (`No`,`Total`,`Got`,`Type`) VALUES ("<<no<<","<<lesson<<","<<got<<","<<University<<")";
+	sql<<"INSERT INTO `score` (`No`,`Lesson`,`Got`,`Type`) VALUES ("<<no<<","<<lesson<<","<<got<<","<<University<<")";
 	return query(sql.str());
 }
 void PrimSch::print(my_ulonglong count, MYSQL_ROW *&rows){

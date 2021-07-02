@@ -5,7 +5,7 @@ const char *student::getSex(sex_t sex){
 		case Male: return "ÄÐ";
 		case Female: return "Å®";
 	}
-	throw exception("invalid sex");
+	return "Î´¶¨Òå";
 }
 school *student::getSchool(unsigned int sch){
 	switch(sch){
