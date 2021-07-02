@@ -5,7 +5,7 @@ const char *student::getSex(sex_t sex){
 		case Male: return "ÄÐ";
 		case Female: return "Å®";
 	}
-	return "Î´¶¨Òå";
+	throw exception("invalid sex");
 }
 school *student::getSchool(unsigned int sch){
 	switch(sch){
@@ -13,7 +13,7 @@ school *student::getSchool(unsigned int sch){
 		case Secondary: return new Seco;
 		case University: return new Univ;
 	}
-	return new school;
+	throw exception("invalid school type");
 }
 
 bool student::insert(char name[16], sex_t sex, date born, school *sch){
