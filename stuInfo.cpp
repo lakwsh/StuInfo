@@ -110,7 +110,7 @@ int main(){
                             info_edit_out:
                                 break;
                             }
-                            case 5: stu.setNo(); stu.remove(); break;
+                            case 5: stu.setNo(); if(stu.remove()){ cout<<"删除成功"<<endl; } break;
                             case 6: cout<<"记录条数: "<<stu.count()<<endl; break;
                             case 7:
                             {
@@ -145,7 +145,7 @@ int main(){
                                 cout<<"请输入记录编号: ";
                                 unsigned int id;
                                 cin>>id;
-                                sc->remove(id);
+                                if(sc->remove(id)) cout<<"删除成功"<<endl;
                                 break;
                             }
                             case 4: goto achi_out;

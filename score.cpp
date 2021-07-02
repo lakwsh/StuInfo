@@ -11,7 +11,7 @@ score::score(school *sch){
 }
 bool score::remove(unsigned int id){
 	stringstream sql;
-	sql<<"DELETE FROM `score` WHERE `Id`="<<id;
+	sql<<"DELETE FROM `score` WHERE `Id`="<<id<<" AND `No`="<<no;
 	return query(sql.str());
 }
 score *score::getScore(unsigned int sch){
@@ -28,7 +28,7 @@ bool PrimSch::insert(){
 	float chi,math,eng;
 	cin>>chi>>math>>eng;
 	stringstream sql;
-	sql<<"INSERT INTO `score` (`No`,`Chi`,`Math`,`Eng`) VALUES ("<<no<<","<<chi<<","<<math<<","<<eng<<")";
+	sql<<"INSERT INTO `score` (`No`,`Chi`,`Math`,`Eng`,`Type`) VALUES ("<<no<<","<<chi<<","<<math<<","<<eng<<","<<Primary<<")";
 	return query(sql.str());
 }
 bool SecoSch::insert(){
@@ -37,7 +37,7 @@ bool SecoSch::insert(){
 	float phy,chem,bio;
 	cin>>phy>>chem>>bio;
 	stringstream sql;
-	sql<<"INSERT INTO `score` (`No`,`Phy`,`Chem`,`Bio`) VALUES ("<<no<<","<<phy<<","<<chem<<","<<bio<<")";
+	sql<<"INSERT INTO `score` (`No`,`Phy`,`Chem`,`Bio`,`Type`) VALUES ("<<no<<","<<phy<<","<<chem<<","<<bio<<","<<Secondary<<")";
 	return query(sql.str());
 }
 bool UnivSch::insert(){
@@ -46,7 +46,7 @@ bool UnivSch::insert(){
 	float got;
 	cin>>lesson>>got;
 	stringstream sql;
-	sql<<"INSERT INTO `score` (`No`,`Total`,`Got`) VALUES ("<<no<<","<<lesson<<","<<got<<")";
+	sql<<"INSERT INTO `score` (`No`,`Total`,`Got`,`Type`) VALUES ("<<no<<","<<lesson<<","<<got<<","<<University<<")";
 	return query(sql.str());
 }
 void PrimSch::print(my_ulonglong count, MYSQL_ROW *&rows){
@@ -59,9 +59,11 @@ void PrimSch::print(my_ulonglong count, MYSQL_ROW *&rows){
 	free(rows); // malloc
 }
 void PrimSch::list(){
+	stringstream sql;
+	sql<<"SELECT `Id`,`Chi`,`Math`,`Eng` FROM `score` WHERE `Type`="<<Primary<<" AND `No`="<<no;
 	MYSQL_ROW *rows;
 	unsigned int fields;
-	print(query("SELECT `Id`,`Chi`,`Math`,`Eng` FROM `score`", rows, fields), rows);
+	PrimSch::print(query(sql.str(), rows, fields), rows);
 }
 void SecoSch::print(my_ulonglong count, MYSQL_ROW *&rows){
 	if(!rows){
@@ -74,9 +76,11 @@ void SecoSch::print(my_ulonglong count, MYSQL_ROW *&rows){
 }
 void SecoSch::list(){
 	PrimSch::list();
+	stringstream sql;
+	sql<<"SELECT `Id`,`Phy`,`Chem`,`Bio` FROM `score` WHERE `Type`="<<Secondary<<" AND `No`="<<no;
 	MYSQL_ROW *rows;
 	unsigned int fields;
-	print(query("SELECT `Id`,`Phy`,`Chem`,`Bio` FROM `score`", rows, fields), rows);
+	SecoSch::print(query(sql.str(), rows, fields), rows);
 }
 void UnivSch::print(my_ulonglong count, MYSQL_ROW *&rows){
 	if(!rows){
@@ -88,7 +92,9 @@ void UnivSch::print(my_ulonglong count, MYSQL_ROW *&rows){
 	free(rows); // malloc
 }
 void UnivSch::list(){
+	stringstream sql;
+	sql<<"SELECT `Id`,`Lesson`,`Got` FROM `score` WHERE `Type`="<<University<<" AND `No`="<<no;
 	MYSQL_ROW *rows;
 	unsigned int fields;
-	print(query("SELECT `Id`,`Lesson`,`Got` FROM `score`", rows, fields), rows);
+	UnivSch::print(query(sql.str(), rows, fields), rows);
 }
