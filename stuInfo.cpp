@@ -138,7 +138,7 @@ int main(){
                         menu::achievement();
                         menu::getc(c);
                         switch(c){
-                            case 1: sc->insert(); break;
+                            case 1: if(sc->insert()){ cout<<"录入成功"<<endl; } break;
                             case 2: sc->list(); break;
                             case 3:
                             {

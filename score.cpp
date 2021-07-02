@@ -55,7 +55,7 @@ void PrimSch::print(my_ulonglong count, MYSQL_ROW *&rows){
 		return;
 	}
 	cout<<"编号\t语文\t数学\t英语"<<endl;
-	cout<<rows[0][0]<<"\t"<<rows[0][1]<<"\t"<<rows[0][2]<<"\t"<<rows[0][3]<<endl;
+	for(int i = 0; i<count; i++) cout<<rows[i][0]<<"\t"<<rows[i][1]<<"\t"<<rows[i][2]<<"\t"<<rows[i][3]<<endl;
 	free(rows); // malloc
 }
 void PrimSch::list(){
@@ -69,7 +69,7 @@ void SecoSch::print(my_ulonglong count, MYSQL_ROW *&rows){
 		return;
 	}
 	cout<<"编号\t物理\t化学\t生物"<<endl;
-	cout<<rows[0][0]<<"\t"<<rows[0][1]<<"\t"<<rows[0][2]<<"\t"<<rows[0][3]<<endl;
+	for(int i = 0; i<count; i++) cout<<rows[i][0]<<"\t"<<rows[i][1]<<"\t"<<rows[i][2]<<"\t"<<rows[i][3]<<endl;
 	free(rows); // malloc
 }
 void SecoSch::list(){
@@ -84,7 +84,7 @@ void UnivSch::print(my_ulonglong count, MYSQL_ROW *&rows){
 		return;
 	}
 	cout<<"编号\t课号\t\t学分"<<endl;
-	cout<<rows[0][0]<<"\t"<<rows[0][1]<<"\t"<<rows[0][2]<<endl;
+	for(int i = 0; i<count; i++) cout<<rows[i][0]<<"\t"<<rows[i][1]<<"\t"<<rows[i][2]<<endl;
 	free(rows); // malloc
 }
 void UnivSch::list(){
