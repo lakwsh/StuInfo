@@ -1,6 +1,14 @@
 #include "score.h"
-#include "school.h"
 
+score::score(school *sch){
+	setNo();
+	stringstream sql;
+	sql<<"SELECT TRUE FROM `student` WHERE `No`="<<no<<" AND `School`="<<sch;
+	MYSQL_ROW *rows;
+	unsigned int fields;
+	if(!query(sql.str(), rows, fields) || !rows) throw exception("student no not exists");
+	free(rows);
+}
 bool score::remove(unsigned int id){
 	stringstream sql;
 	sql<<"DELETE FROM `score` WHERE `Id`="<<id;
@@ -9,7 +17,7 @@ bool score::remove(unsigned int id){
 score *score::getScore(unsigned int sch){
 	switch(sch){
 		case Primary: return new PrimSch;
-		case Secondary: return new SencSch;
+		case Secondary: return new SecoSch;
 		case University: return new UnivSch;
 	}
 	throw exception("invalid school type");
@@ -23,7 +31,7 @@ bool PrimSch::insert(){
 	sql<<"INSERT INTO `score` (`No`,`Chi`,`Math`,`Eng`) VALUES ("<<no<<","<<chi<<","<<math<<","<<eng<<")";
 	return query(sql.str());
 }
-bool SencSch::insert(){
+bool SecoSch::insert(){
 	PrimSch::insert();
 	cout<<"请输入物理 & 化学 & 生物成绩: ";
 	float phy,chem,bio;
@@ -55,7 +63,7 @@ void PrimSch::list(){
 	unsigned int fields;
 	print(query("SELECT `Id`,`Chi`,`Math`,`Eng` FROM `score`", rows, fields), rows);
 }
-void SencSch::print(my_ulonglong count, MYSQL_ROW *&rows){
+void SecoSch::print(my_ulonglong count, MYSQL_ROW *&rows){
 	if(!rows){
 		cout<<"未查询到相关信息"<<endl;
 		return;
@@ -64,7 +72,7 @@ void SencSch::print(my_ulonglong count, MYSQL_ROW *&rows){
 	cout<<rows[0][0]<<"\t"<<rows[0][1]<<"\t"<<rows[0][2]<<"\t"<<rows[0][3]<<endl;
 	free(rows); // malloc
 }
-void SencSch::list(){
+void SecoSch::list(){
 	PrimSch::list();
 	MYSQL_ROW *rows;
 	unsigned int fields;

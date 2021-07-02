@@ -10,7 +10,7 @@ const char *student::getSex(sex_t sex){
 school *student::getSchool(unsigned int sch){
 	switch(sch){
 		case Primary: return new Prim;
-		case Secondary: return new Senc;
+		case Secondary: return new Seco;
 		case University: return new Univ;
 	}
 	return new school;

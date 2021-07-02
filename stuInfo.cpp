@@ -25,7 +25,7 @@ public:
         cout<<"4. 返回上一页"<<endl;
     }
     static unsigned int school(){
-        cout<<"请选择学校: "<<endl;
+        cout<<"请选择学校类别: "<<endl;
         cout<<"1. 小学"<<endl;
         cout<<"2. 中学"<<endl;
         cout<<"3. 大学"<<endl;
@@ -123,8 +123,8 @@ int main(){
                             case 8: goto info_out;
                         }
                         cout<<endl;
-                    } catch(exception e){
-                        cout<<"异常: "<<e.what()<<endl;
+                    }catch(exception e){
+                        cout<<"异常: "<<e.what()<<endl<<endl;
                     }
                 }
             info_out:
@@ -132,24 +132,28 @@ int main(){
             }
             case 2:
             {
-                score *sc = score::getScore(menu::school());
-                while(true){
-                    menu::achievement();
-                    menu::getc(c);
-                    switch(c){
-                        case 1: sc->insert(); break;
-                        case 2: sc->list(); break;
-                        case 3:
-                        {
-                            cout<<"请输入记录编号: ";
-                            unsigned int id;
-                            cin>>id;
-                            sc->remove(id);
-                            break;
+                try{
+                    score *sc = score::getScore(menu::school());
+                    while(true){
+                        menu::achievement();
+                        menu::getc(c);
+                        switch(c){
+                            case 1: sc->insert(); break;
+                            case 2: sc->list(); break;
+                            case 3:
+                            {
+                                cout<<"请输入记录编号: ";
+                                unsigned int id;
+                                cin>>id;
+                                sc->remove(id);
+                                break;
+                            }
+                            case 4: goto achi_out;
                         }
-                        case 4: goto achi_out;
+                        cout<<endl;
                     }
-                    cout<<endl;
+                }catch(exception e){
+                    cout<<"异常: "<<e.what()<<endl<<endl;
                 }
             achi_out:
                 break;

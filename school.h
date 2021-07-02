@@ -25,7 +25,7 @@ protected:
 public:
 	const char *getName() override{ return "Сѧ"; }
 };
-class Senc:public school{
+class Seco:public school{
 protected:
 	unsigned int getValue() override{ return Secondary; }
 public:

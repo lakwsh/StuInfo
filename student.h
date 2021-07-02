@@ -14,7 +14,7 @@ private:
 
 	void print(my_ulonglong count, MYSQL_ROW *&rows);
 public:
-	static school *getSchool(unsigned int school);
+	static school *getSchool(unsigned int sch);
 
 	bool insert(char name[16], sex_t sex, date born, school *sch);
 	bool edit(char name[16]);
