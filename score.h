@@ -6,7 +6,7 @@ using namespace std;
 
 class score:protected stdno{
 private:
-	virtual void print(my_ulonglong count, MYSQL_ROW *&rows) = 0; // ´¿Ðéº¯Êý
+	void print(my_ulonglong count, MYSQL_ROW *&rows){ }
 public:
 	score(school *sch);
 	static score *getScore(unsigned int sch);
@@ -18,7 +18,7 @@ public:
 
 class PrimSch:virtual public score{
 private:
-	void print(my_ulonglong count, MYSQL_ROW *&rows) override;
+	void print(my_ulonglong count, MYSQL_ROW *&rows); // ÖØÐ´Òþ²Ø
 public:
 	PrimSch():score(new Prim){ }
 	bool insert() override;
@@ -26,7 +26,7 @@ public:
 };
 class SecoSch:public PrimSch{
 private:
-	void print(my_ulonglong count, MYSQL_ROW *&rows) override;
+	void print(my_ulonglong count, MYSQL_ROW *&rows);
 public:
 	SecoSch():score(new Seco){ }
 	bool insert() override;
@@ -34,7 +34,7 @@ public:
 };
 class UnivSch:virtual public score{
 private:
-	void print(my_ulonglong count, MYSQL_ROW *&rows) override;
+	void print(my_ulonglong count, MYSQL_ROW *&rows);
 public:
 	UnivSch():score(new Univ){ }
 	bool insert() override;

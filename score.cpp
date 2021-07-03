@@ -63,7 +63,7 @@ void PrimSch::list(){
 	sql<<"SELECT `Id`,`Chi`,`Math`,`Eng` FROM `score` WHERE `Type`="<<Primary<<" AND `No`="<<no;
 	MYSQL_ROW *rows;
 	unsigned int fields;
-	PrimSch::print(query(sql.str(), rows, fields), rows);
+	print(query(sql.str(), rows, fields), rows);
 }
 void SecoSch::print(my_ulonglong count, MYSQL_ROW *&rows){
 	if(!rows){
@@ -80,7 +80,7 @@ void SecoSch::list(){
 	sql<<"SELECT `Id`,`Phy`,`Chem`,`Bio` FROM `score` WHERE `Type`="<<Secondary<<" AND `No`="<<no;
 	MYSQL_ROW *rows;
 	unsigned int fields;
-	SecoSch::print(query(sql.str(), rows, fields), rows);
+	print(query(sql.str(), rows, fields), rows);
 }
 void UnivSch::print(my_ulonglong count, MYSQL_ROW *&rows){
 	if(!rows){
@@ -96,5 +96,5 @@ void UnivSch::list(){
 	sql<<"SELECT `Id`,`Lesson`,`Got` FROM `score` WHERE `Type`="<<University<<" AND `No`="<<no;
 	MYSQL_ROW *rows;
 	unsigned int fields;
-	UnivSch::print(query(sql.str(), rows, fields), rows);
+	print(query(sql.str(), rows, fields), rows);
 }
