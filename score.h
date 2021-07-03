@@ -18,25 +18,25 @@ public:
 
 class PrimSch:virtual public score{
 private:
-	void print(my_ulonglong count, MYSQL_ROW *&rows);
+	void print(my_ulonglong count, MYSQL_ROW *&rows) override;
 public:
 	PrimSch():score(new Prim){ }
-	bool insert();
-	void list();
+	bool insert() override;
+	void list() override;
 };
 class SecoSch:public PrimSch{
 private:
-	void print(my_ulonglong count, MYSQL_ROW *&rows);
+	void print(my_ulonglong count, MYSQL_ROW *&rows) override;
 public:
 	SecoSch():score(new Seco){ }
-	bool insert();
-	void list();
+	bool insert() override;
+	void list() override;
 };
 class UnivSch:virtual public score{
 private:
-	void print(my_ulonglong count, MYSQL_ROW *&rows);
+	void print(my_ulonglong count, MYSQL_ROW *&rows) override;
 public:
 	UnivSch():score(new Univ){ }
-	bool insert();
-	void list();
+	bool insert() override;
+	void list() override;
 };
